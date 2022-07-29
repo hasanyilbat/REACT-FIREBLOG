@@ -1,6 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -18,10 +24,44 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const signIn = async (email, password) => {
+export const signIn = async (email, password) => {
   try {
-    const user = createUserWithEmailAndPassword(auth, email, password);
-  } catch (error) {}
+    const userCredential = createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-  console.log(user);
+    console.log(userCredential);
+    console.log(userCredential.displayName);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const LogIn = async (email, password) => {
+  try {
+    const userCredential = signInWithEmailAndPassword(auth, email, password);
+    console.log(userCredential);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const userObserver = (setCurrentUser) => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setCurrentUser(user);
+    } else {
+      setCurrentUser(false);
+    }
+  });
+};
+
+export const logOut = () => {
+  try {
+    signOut(auth);
+  } catch (error) {
+    console.log(error);
+  }
 };
