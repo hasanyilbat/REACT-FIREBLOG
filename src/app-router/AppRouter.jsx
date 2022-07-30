@@ -8,6 +8,7 @@ import UpdateBlog from "../pages/UpdateBlog";
 import Register from "../pages/Register";
 import Profile from "../pages/Profile";
 import Navbar from "../components/Navbar";
+import PrivateRouter from "./PrivateRouter";
 
 const AppRouter = () => {
   return (
@@ -16,12 +17,14 @@ const AppRouter = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="details" element={<Details />} />
           <Route path="login" element={<Login />} />
-          <Route path="new-blog" element={<NewBlog />} />
-          <Route path="profile" element={<Profile />} />
           <Route path="register" element={<Register />} />
-          <Route path="update-blog" element={<UpdateBlog />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="new-blog" element={<NewBlog />} />
+          <Route path="update-blog/:id" element={<UpdateBlog />} />
+          <Route path="details/:id" element={<PrivateRouter />}>
+            <Route path="" element={<Details />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

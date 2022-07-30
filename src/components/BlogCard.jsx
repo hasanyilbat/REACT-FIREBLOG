@@ -1,5 +1,4 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -10,34 +9,60 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import { BlogContext } from "../contexts/BlogContext";
 import { Box } from "@mui/system";
-
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 export default function BlogCard() {
-  const { cardInfo } = React.useContext(BlogContext);
+  const { cardInfo } = useContext(BlogContext);
+  const navigate = useNavigate();
 
-  console.log(cardInfo);
-  return cardInfo.map((card) => {
+  return cardInfo.map((card, index) => {
+    const { id } = card;
     return (
-      <Box>
-        <Card sx={{ maxWidth: 345 }}>
+      <Card
+        sx={{ width: 320, height: 430, m: 3, overflow: "hidden" }}
+        onClick={() => navigate(`details/${id}`)}
+        key={index}
+      >
+        <Box
+          sx={{
+            textAlign: "center",
+            "&:hover": {
+              backgroundColor: "primary.main",
+              opacity: [0.9, 0.8, 0.7],
+            },
+          }}
+        >
           <CardMedia component="img" height="194" image={card.imgURL} alt="" />
           <CardContent>
             <Typography variant="h6" color="text.primary">
               {card.title}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              sx={{ height: 80 }}
+              variant="body2"
+              color="text.secondary"
+            >
               {card.content}
             </Typography>
           </CardContent>
-          <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="share">
-              <ShareIcon />
-            </IconButton>
-          </CardActions>
-        </Card>
-      </Box>
+        </Box>
+        <Typography
+          sx={{ textAlign: "center" }}
+          variant="h6"
+          color="text.secondary"
+        >
+          {card.email}
+        </Typography>
+
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+        </CardActions>
+      </Card>
     );
   });
 }

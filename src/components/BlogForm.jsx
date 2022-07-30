@@ -8,7 +8,7 @@ import { writeCardData } from "../helpers/functions";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
-export default function Register() {
+export default function BlogForm() {
   const [title, setTitle] = useState("");
   const [imageURL, setImageURL] = useState("");
   const [content, setContent] = useState("");
