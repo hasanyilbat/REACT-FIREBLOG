@@ -1,7 +1,18 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { createContext } from "react";
+import { getCardData } from "../helpers/functions";
 
-const BlogContext = () => {
-  return <div>BlogContext</div>;
+export const BlogContext = createContext();
+const BlogContextProvider = ({ children }) => {
+  const [cardInfo, setCardInfo] = useState([]);
+
+  useEffect(() => {
+    getCardData(setCardInfo);
+  }, []);
+
+  return (
+    <BlogContext.Provider value={{ cardInfo }}>{children}</BlogContext.Provider>
+  );
 };
 
-export default BlogContext;
+export default BlogContextProvider;

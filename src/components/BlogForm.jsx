@@ -3,17 +3,22 @@ import Box from "@mui/material/Box";
 import { Button, TextField, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import blok from "../assets/blok.png";
-
 import { useState } from "react";
+import { writeCardData } from "../helpers/functions";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
 export default function Register() {
   const [title, setTitle] = useState("");
   const [imageURL, setImageURL] = useState("");
   const [content, setContent] = useState("");
 
+  const { currentUser } = useContext(AuthContext);
+
   const handleSubmit = (e) => {
-    console.log(title, imageURL, content);
+    console.log(title, imageURL, content, currentUser.email);
     e.preventDefault();
+    writeCardData(title, imageURL, content, currentUser.email);
   };
 
   return (

@@ -7,10 +7,8 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getDatabase } from "firebase/database";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_apiKey,
   authDomain: process.env.REACT_APP_authDomain,
@@ -18,12 +16,15 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_storageBucket,
   messagingSenderId: process.env.REACT_APP_messagingSenderId,
   appId: process.env.REACT_APP_appId,
+  databaseURL: process.env.REACT_APP_databaseURL,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+export const db = getDatabase();
 
+//*Register
 export const signIn = async (email, password) => {
   try {
     const userCredential = createUserWithEmailAndPassword(
@@ -31,18 +32,15 @@ export const signIn = async (email, password) => {
       email,
       password
     );
-
-    console.log(userCredential);
-    console.log(userCredential.displayName);
   } catch (error) {
     console.log(error);
   }
 };
 
+//*login
 export const LogIn = async (email, password) => {
   try {
     const userCredential = signInWithEmailAndPassword(auth, email, password);
-    console.log(userCredential);
   } catch (error) {
     console.log(error.message);
   }
@@ -58,6 +56,7 @@ export const userObserver = (setCurrentUser) => {
   });
 };
 
+//*logout
 export const logOut = () => {
   try {
     signOut(auth);
