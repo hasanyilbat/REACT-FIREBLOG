@@ -58,16 +58,41 @@ export default function Navbar() {
             </Link>
           </Typography>
 
-          <Typography
-            variant="p"
-            onClick={() => navigate("/")}
-            style={{ cursor: "pointer" }}
-          >
-            <h2 className="line-through bg-success">
-              <span>&lt;HASO BLOG/&gt;</span>
-            </h2>
-          </Typography>
+          {currentUser ? (
+            <Typography
+              variant="p"
+              onClick={() => navigate("/")}
+              style={{ cursor: "pointer" }}
+              sx={{ display: { xs: "none", md: "flex" } }}
+            >
+              <h2 className="line-through bg-success">
+                <span>&lt;HASO BLOG/&gt;</span>
+              </h2>
+            </Typography>
+          ) : (
+            <Typography
+              variant="p"
+              onClick={() => navigate("/")}
+              style={{ cursor: "pointer" }}
+            >
+              <h2 className="line-through bg-success">
+                <span>&lt;HASO BLOG/&gt;</span>
+              </h2>
+            </Typography>
+          )}
+
           <div>
+            <span
+              style={{
+                position: "absolute",
+                right: "70px",
+                top: "20px",
+                cursor: "pointer",
+              }}
+              onClick={() => navigate("profile")}
+            >
+              {currentUser.email}
+            </span>
             <IconButton
               size="large"
               aria-label="account of current user"

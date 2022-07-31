@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import React from "react";
 import BlogCard from "../components/BlogCard";
 

@@ -22,6 +22,7 @@ export default function BlogCard() {
   const { currentUser } = useContext(AuthContext);
   const { id } = useParams();
   const navigate = useNavigate();
+  console.log(cardInfo);
   return cardInfo
     .filter((info) => info.id == id)
     .map((filteredInfo, index) => {
@@ -36,16 +37,12 @@ export default function BlogCard() {
             <Box
               sx={{
                 textAlign: "center",
-                "&:hover": {
-                  backgroundColor: "primary.main",
-                  opacity: [0.9, 0.8, 0.7],
-                },
               }}
             >
               <CardMedia
                 component="img"
                 height="500"
-                image={filteredInfo.imageURL}
+                image={filteredInfo.imgURL}
                 alt=""
               />
               <CardContent>
