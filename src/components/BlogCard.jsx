@@ -42,7 +42,7 @@ export default function BlogCard() {
               {card.date}
             </Typography>
             <Typography
-              sx={{ height: 80 }}
+              sx={{ height: 80, overflow: "hidden" }}
               variant="body2"
               color="text.primary"
             >
@@ -51,7 +51,7 @@ export default function BlogCard() {
           </CardContent>
         </Box>
         <Typography
-          sx={{ textAlign: "center", overflow: "hidden" }}
+          sx={{ textAlign: "center" }}
           variant="h6"
           color="text.secondary"
         >
