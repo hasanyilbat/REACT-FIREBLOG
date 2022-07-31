@@ -23,3 +23,16 @@
   padding: 0 5px;
   background-color: white;
 }
+
+.line-through-dashboard {
+  /* width: 13rem; */
+  text-align: center;
+  border-bottom: 3px solid #1976d2;
+  line-height: 0.1rem;
+}
+
+.line-through-dashboard span {
+  padding: 0 5px;
+  background-color: white;
+  color: #1976d2;
+}

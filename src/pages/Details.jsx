@@ -15,9 +15,11 @@ import { useContext } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { deleteData } from "../helpers/functions";
+import { AuthContext } from "../contexts/AuthContext";
 
 export default function BlogCard() {
   const { cardInfo } = useContext(BlogContext);
+  const { currentUser } = useContext(AuthContext);
   const { id } = useParams();
   const navigate = useNavigate();
   return cardInfo
@@ -76,31 +78,33 @@ export default function BlogCard() {
               </IconButton>
             </CardActions>
           </Card>
-          <ButtonGroup
-            disableElevation
-            variant="contained"
-            size="large"
-            sx={{
-              display: "flex",
-              justifyContent: "space-around",
-              mt: 3,
-            }}
-          >
-            <Button
-              color="primary"
-              endIcon={<EditIcon />}
-              onClick={() => navigate(`/update-blog/${id}`)}
+          {filteredInfo.email === currentUser.email && (
+            <ButtonGroup
+              disableElevation
+              variant="contained"
+              size="large"
+              sx={{
+                display: "flex",
+                justifyContent: "space-around",
+                mt: 3,
+              }}
             >
-              UPDATE
-            </Button>
-            <Button
-              color="error"
-              endIcon={<DeleteIcon />}
-              onClick={() => deleteData(filteredInfo)}
-            >
-              DELETE
-            </Button>
-          </ButtonGroup>
+              <Button
+                color="primary"
+                endIcon={<EditIcon />}
+                onClick={() => navigate(`/update-blog/${id}`)}
+              >
+                UPDATE
+              </Button>
+              <Button
+                color="error"
+                endIcon={<DeleteIcon />}
+                onClick={() => deleteData(filteredInfo, navigate)}
+              >
+                DELETE
+              </Button>
+            </ButtonGroup>
+          )}
         </Container>
       );
     });

@@ -7,6 +7,8 @@ import { useState } from "react";
 import { writeCardData } from "../helpers/functions";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { toastSuccessNotify } from "../helpers/toastNotify";
 
 export default function BlogForm() {
   const [title, setTitle] = useState("");
@@ -15,10 +17,17 @@ export default function BlogForm() {
 
   const { currentUser } = useContext(AuthContext);
 
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
+    const current = new Date();
+    const date = `${current.getDate()}/${
+      current.getMonth() + 1
+    }/${current.getFullYear()}`;
     console.log(title, imageURL, content, currentUser.email);
     e.preventDefault();
-    writeCardData(title, imageURL, content, currentUser.email);
+    writeCardData(title, imageURL, content, currentUser.email, date);
+    navigate("/");
+    toastSuccessNotify("Card created successfully");
   };
 
   return (
@@ -92,10 +101,11 @@ export default function BlogForm() {
           />
           <TextField
             id="outlined-multiline-static"
-            label="Content*"
+            label="Content"
             multiline
             rows={10}
             fullWidth
+            required
             sx={{ mt: 2 }}
             onChange={(e) => setContent(e.target.value)}
             value={content}

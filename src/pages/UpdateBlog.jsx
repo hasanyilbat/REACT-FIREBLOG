@@ -6,20 +6,26 @@ import blok from "../assets/blok.png";
 import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { UpdateCardData } from "../helpers/functions";
+import { toastSuccessNotify } from "../helpers/toastNotify";
+import { BlogContext } from "../contexts/BlogContext";
+
 export default function BlogForm() {
   const { id } = useParams();
   const [editTitle, setEditTitle] = useState("");
   const [editImageURL, setEditImageURL] = useState("");
   const [editContent, setEditContent] = useState("");
   const { currentUser } = useContext(AuthContext);
-
+  const { cardInfo } = useContext(BlogContext);
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     console.log(editTitle, editImageURL, editContent, currentUser.email, id);
     e.preventDefault();
 
     UpdateCardData(editTitle, editImageURL, editContent, currentUser.email, id);
+    navigate("/");
+    toastSuccessNotify("Card was updated successfully");
   };
 
   return (
@@ -93,8 +99,9 @@ export default function BlogForm() {
           />
           <TextField
             id="outlined-multiline-static"
-            label="Content*"
+            label="Content"
             multiline
+            required
             rows={10}
             fullWidth
             sx={{ mt: 2 }}

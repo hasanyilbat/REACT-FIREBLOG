@@ -6,7 +6,7 @@ import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { BlogContext } from "../contexts/BlogContext";
 import { Box } from "@mui/system";
 import { useNavigate } from "react-router-dom";
@@ -19,8 +19,7 @@ export default function BlogCard() {
     const { id } = card;
     return (
       <Card
-        sx={{ width: 320, height: 430, m: 3, overflow: "hidden" }}
-        onClick={() => navigate(`details/${id}`)}
+        sx={{ width: 320, height: 450, m: 3, overflow: "hidden" }}
         key={index}
       >
         <Box
@@ -31,16 +30,24 @@ export default function BlogCard() {
               opacity: [0.9, 0.8, 0.7],
             },
           }}
+          onClick={() => navigate(`details/${id}`)}
         >
-          <CardMedia component="img" height="194" image={card.imgURL} alt="" />
-          <CardContent>
-            <Typography variant="h6" color="text.primary">
+          <CardMedia component="img" height="190" image={card.imgURL} alt="" />
+          <CardContent sx={{ background: "#E7E6F5" }}>
+            <Typography variant="h6" sx={{ color: "#1976d2" }}>
               {card.title}
+            </Typography>
+            <Typography
+              variant="p"
+              color="text.secondary"
+              sx={{ fontSize: "12px" }}
+            >
+              {card.date}
             </Typography>
             <Typography
               sx={{ height: 80 }}
               variant="body2"
-              color="text.secondary"
+              color="text.primary"
             >
               {card.content}
             </Typography>
@@ -59,7 +66,7 @@ export default function BlogCard() {
             <FavoriteIcon />
           </IconButton>
           <IconButton aria-label="share">
-            <ShareIcon />
+            <ChatBubbleOutlineIcon />
           </IconButton>
         </CardActions>
       </Card>

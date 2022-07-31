@@ -6,8 +6,11 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { getDatabase } from "firebase/database";
+import { toastSuccessNotify, toastWarnNotify } from "./toastNotify";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_apiKey,
@@ -23,25 +26,34 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 export const db = getDatabase();
-
 //*Register
+
 export const signIn = async (email, password) => {
   try {
-    const userCredential = createUserWithEmailAndPassword(
+    const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
+    toastSuccessNotify("Registered successfully!");
   } catch (error) {
+    toastWarnNotify(`${error.message}`);
     console.log(error);
   }
 };
 
 //*login
-export const LogIn = async (email, password) => {
+export const LogIn = async (email, password, navigate) => {
   try {
-    const userCredential = signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    navigate("/");
+    toastSuccessNotify("Logged in successfully!");
   } catch (error) {
+    toastWarnNotify("email or password is wrong");
     console.log(error.message);
   }
 };
@@ -63,4 +75,19 @@ export const logOut = () => {
   } catch (error) {
     console.log(error);
   }
+};
+
+//*GOOGLE
+
+export const signUpGoogleProvider = (navigate) => {
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      console.log(result);
+      toastSuccessNotify("Logged in successfully!");
+      navigate("/");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };

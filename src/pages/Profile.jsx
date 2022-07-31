@@ -26,9 +26,11 @@ export default function Profile() {
           alignItems: "center",
         }}
       >
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {currentUser.photoURL}
-        </Typography>
+        <Typography
+          sx={{ fontSize: 14 }}
+          color="text.secondary"
+          gutterBottom
+        ></Typography>
         <Typography variant="p" component="div">
           <img src="" alt="profile" />
         </Typography>

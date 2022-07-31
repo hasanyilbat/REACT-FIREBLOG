@@ -5,16 +5,17 @@ import { Container } from "@mui/system";
 import blok from "../assets/blok.png";
 import google from "../assets/google.png";
 import { useState } from "react";
-import { LogIn } from "../helpers/firebase";
+import { LogIn, signUpGoogleProvider } from "../helpers/firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email, password);
-    LogIn(email, password);
+    LogIn(email, password, navigate);
     setEmail("");
     setPassword("");
   };
@@ -69,7 +70,7 @@ export default function Register() {
         </Typography>
         <Box component="form" onSubmit={handleSubmit}>
           <TextField
-            error={!email}
+            // error={!email}
             id="outlined-error"
             label="Email"
             autoFocus
@@ -78,15 +79,15 @@ export default function Register() {
             fullWidth
             onChange={(e) => setEmail(e.target.value)}
             value={email}
-            helperText={email === "" ? "Email is required." : ""}
+            // helperText={email === "" ? "Email is required." : ""}
             sx={{ mb: "1rem" }}
           />
           <TextField
-            error={!password}
+            // error={!password}
             id="outlined-error-helper-text"
             label="Password"
             type="password"
-            helperText={password === "" ? "Password is required." : ""}
+            // helperText={password === "" ? "Password is required." : ""}
             required
             fullWidth
             onChange={(e) => setPassword(e.target.value)}
@@ -100,7 +101,12 @@ export default function Register() {
           >
             LOGIN
           </Button>
-          <Button variant="contained" fullWidth color="inherit">
+          <Button
+            variant="contained"
+            fullWidth
+            color="inherit"
+            onClick={() => signUpGoogleProvider(navigate)}
+          >
             WITH
             <img
               src={google}

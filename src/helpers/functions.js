@@ -1,9 +1,9 @@
 import { set, ref, onValue, remove, update } from "firebase/database";
-import firebase from "./firebase";
 import { db } from "./firebase";
 import { uid } from "uid";
+import { toastSuccessNotify } from "./toastNotify";
 
-export const writeCardData = (title, imgURL, content, email) => {
+export const writeCardData = (title, imgURL, content, email, date) => {
   const uuid = uid();
   set(ref(db, `/${uuid}`), {
     title: title,
@@ -11,6 +11,7 @@ export const writeCardData = (title, imgURL, content, email) => {
     content: content,
     email: email,
     id: uuid,
+    date: date,
   });
 };
 
@@ -26,8 +27,10 @@ export const getCardData = (setCardInfo, cardInfo) => {
   });
 };
 
-export const deleteData = (filteredInfo) => {
+export const deleteData = (filteredInfo, navigate) => {
   remove(ref(db, `${filteredInfo.id}`));
+  navigate("/");
+  toastSuccessNotify("Card deleted successfully");
 };
 
 export const UpdateCardData = (
