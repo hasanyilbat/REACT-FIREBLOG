@@ -18,10 +18,7 @@ export default function BlogCard() {
   return cardInfo.map((card, index) => {
     const { id } = card;
     return (
-      <Card
-        sx={{ width: 320, height: 450, m: 3, overflow: "hidden" }}
-        key={index}
-      >
+      <Card sx={{ width: 320, height: 450, m: 3 }} key={index}>
         <Box
           sx={{
             textAlign: "center",
@@ -54,7 +51,7 @@ export default function BlogCard() {
           </CardContent>
         </Box>
         <Typography
-          sx={{ textAlign: "center" }}
+          sx={{ textAlign: "center", overflow: "hidden" }}
           variant="h6"
           color="text.secondary"
         >
