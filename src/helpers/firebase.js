@@ -29,7 +29,7 @@ const auth = getAuth(app);
 export const db = getDatabase();
 //*Register
 
-export const signIn = async (email, password) => {
+export const signIn = async (email, password, navigate) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -40,6 +40,7 @@ export const signIn = async (email, password) => {
   } catch (error) {
     toastWarnNotify(`${error.message}`);
     console.log(error);
+    navigate("/");
   }
 };
 

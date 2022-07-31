@@ -52,6 +52,11 @@ export default function BlogCard() {
                 height="500"
                 image={filteredInfo.imgURL}
                 alt=""
+                sx={{
+                  backgroundPosition: "center",
+                  objectFit: "cover",
+                  backgroundSize: "cover",
+                }}
               />
               <CardContent>
                 <Typography variant="h6" color="text.primary">
