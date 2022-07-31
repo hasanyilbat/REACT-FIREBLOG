@@ -28,6 +28,14 @@ export default function BlogCard() {
     .map((filteredInfo, index) => {
       return (
         <Container maxWidth="xl">
+          <Typography
+            variant="h5"
+            style={{ width: "30rem", margin: "auto", padding: "1rem" }}
+          >
+            <h2 className="line-through-dashboard bg-success">
+              <span>&lt;DETAILS/&gt;</span>
+            </h2>
+          </Typography>
           <Card
             sx={{
               overflow: "hidden",

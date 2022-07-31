@@ -10,6 +10,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { getDatabase } from "firebase/database";
+import { Navigate } from "react-router-dom";
 import { toastSuccessNotify, toastWarnNotify } from "./toastNotify";
 
 const firebaseConfig = {
@@ -69,9 +70,11 @@ export const userObserver = (setCurrentUser) => {
 };
 
 //*logout
-export const logOut = () => {
+export const logOut = (navigate) => {
   try {
     signOut(auth);
+    toastSuccessNotify("Logged out successfully!");
+    navigate("/");
   } catch (error) {
     console.log(error);
   }

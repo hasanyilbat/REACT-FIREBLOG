@@ -32,7 +32,7 @@ export default function Navbar() {
   };
   const handleCloseSignOut = () => {
     setAnchorEl(null);
-    logOut();
+    logOut(navigate);
   };
   const handleCloseProfile = () => {
     setAnchorEl(null);
