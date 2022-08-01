@@ -6,16 +6,16 @@ import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import { BlogContext } from "../contexts/BlogContext";
 import { Box } from "@mui/system";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button, ButtonGroup, Container } from "@mui/material";
 import { useContext } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { deleteData } from "../helpers/functions";
 import { AuthContext } from "../contexts/AuthContext";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 
 export default function BlogCard() {
   const { cardInfo } = useContext(BlogContext);
@@ -84,7 +84,7 @@ export default function BlogCard() {
                 <FavoriteIcon />
               </IconButton>
               <IconButton aria-label="share">
-                <ShareIcon />
+                <ChatBubbleOutlineIcon />
               </IconButton>
             </CardActions>
           </Card>
@@ -102,7 +102,9 @@ export default function BlogCard() {
               <Button
                 color="primary"
                 endIcon={<EditIcon />}
-                onClick={() => navigate(`/update-blog/${id}`)}
+                onClick={() =>
+                  navigate(`/update-blog/${id}`, { state: filteredInfo })
+                }
               >
                 UPDATE
               </Button>

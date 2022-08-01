@@ -5,15 +5,6 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { AuthContext } from "../contexts/AuthContext";
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
-
 export default function Profile() {
   const { currentUser } = React.useContext(AuthContext);
 

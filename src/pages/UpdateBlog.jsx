@@ -6,21 +6,20 @@ import blok from "../assets/blok.png";
 import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { UpdateCardData } from "../helpers/functions";
 import { toastSuccessNotify } from "../helpers/toastNotify";
-import { BlogContext } from "../contexts/BlogContext";
 
 export default function BlogForm() {
+  const { state } = useLocation();
   const { id } = useParams();
-  const [editTitle, setEditTitle] = useState("");
-  const [editImageURL, setEditImageURL] = useState("");
-  const [editContent, setEditContent] = useState("");
+  const [editTitle, setEditTitle] = useState(state.title);
+  const [editImageURL, setEditImageURL] = useState(state.imgURL);
+  const [editContent, setEditContent] = useState(state.content);
   const { currentUser } = useContext(AuthContext);
-  const { cardInfo } = useContext(BlogContext);
   const navigate = useNavigate();
+  console.log(state);
   const handleSubmit = (e) => {
-    console.log(editTitle, editImageURL, editContent, currentUser.email, id);
     e.preventDefault();
 
     UpdateCardData(editTitle, editImageURL, editContent, currentUser.email, id);

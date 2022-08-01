@@ -1,8 +1,18 @@
 import { Container, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import CircleLoader from "react-spinners/CircleLoader";
 import BlogCard from "../components/BlogCard";
 
 const Dashboard = () => {
+  // const [loading, setLoading] = useState(false);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1000);
+  // }, []);
+
   return (
     <>
       <Typography
@@ -21,6 +31,11 @@ const Dashboard = () => {
           flexWrap: "wrap",
         }}
       >
+        {/* {loading ? (
+          <CircleLoader color={"#0BD1FA"} loading={loading} size={150} />
+        ) : (
+          <BlogCard />
+        )} */}
         <BlogCard />
       </Container>
     </>
