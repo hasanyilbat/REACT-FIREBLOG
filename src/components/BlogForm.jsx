@@ -23,9 +23,9 @@ export default function BlogForm() {
     const date = `${current.getDate()}/${
       current.getMonth() + 1
     }/${current.getFullYear()}`;
-    console.log(title, imageURL, content, currentUser.email);
+    const time = new Date().getTime();
     e.preventDefault();
-    writeCardData(title, imageURL, content, currentUser.email, date);
+    writeCardData(title, imageURL, content, currentUser.email, date, time);
     navigate("/");
     toastSuccessNotify("Card created successfully");
   };

@@ -17,12 +17,13 @@ import { deleteData } from "../helpers/functions";
 import { AuthContext } from "../contexts/AuthContext";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 
-export default function BlogCard() {
+export default function Details() {
   const { cardInfo } = useContext(BlogContext);
   const { currentUser } = useContext(AuthContext);
   const { id } = useParams();
   const navigate = useNavigate();
   console.log(cardInfo);
+  console.log(currentUser);
   return cardInfo
     .filter((info) => info.id == id)
     .map((filteredInfo, index) => {

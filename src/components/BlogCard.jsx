@@ -14,7 +14,8 @@ import { useContext } from "react";
 export default function BlogCard() {
   const { cardInfo } = useContext(BlogContext);
   const navigate = useNavigate();
-
+  cardInfo.sort((a, b) => a.time - b.time);
+  console.log(cardInfo);
   return cardInfo.map((card, index) => {
     const { id } = card;
     return (

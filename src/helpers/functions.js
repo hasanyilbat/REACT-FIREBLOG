@@ -3,7 +3,7 @@ import { db } from "./firebase";
 import { uid } from "uid";
 import { toastSuccessNotify } from "./toastNotify";
 
-export const writeCardData = (title, imgURL, content, email, date) => {
+export const writeCardData = (title, imgURL, content, email, date, time) => {
   const uuid = uid();
   set(ref(db, `/${uuid}`), {
     title: title,
@@ -12,6 +12,7 @@ export const writeCardData = (title, imgURL, content, email, date) => {
     email: email,
     id: uuid,
     date: date,
+    time: time,
   });
 };
 
@@ -21,7 +22,7 @@ export const getCardData = (setCardInfo, cardInfo) => {
     const data = snapshot.val();
     if (data !== null) {
       Object.values(data).map((card) => {
-        setCardInfo((oldArray) => [card, ...oldArray]);
+        setCardInfo((oldArray) => [...oldArray, card]);
       });
     }
   });
