@@ -87,7 +87,6 @@ export const signUpGoogleProvider = (navigate) => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
     .then((result) => {
-      console.log(result);
       toastSuccessNotify("Logged in successfully!");
       navigate("/");
     })

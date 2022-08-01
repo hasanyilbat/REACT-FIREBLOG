@@ -15,7 +15,6 @@ export default function Register() {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password);
     signIn(email, password, navigate);
     setEmail("");
     setPassword("");

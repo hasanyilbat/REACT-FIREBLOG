@@ -18,7 +18,6 @@ export default function BlogForm() {
   const [editContent, setEditContent] = useState(state.content);
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
-  console.log(state);
   const handleSubmit = (e) => {
     e.preventDefault();
 

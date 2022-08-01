@@ -22,8 +22,6 @@ export default function Details() {
   const { currentUser } = useContext(AuthContext);
   const { id } = useParams();
   const navigate = useNavigate();
-  console.log(cardInfo);
-  console.log(currentUser);
   return cardInfo
     .filter((info) => info.id == id)
     .map((filteredInfo, index) => {

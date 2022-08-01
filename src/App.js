@@ -6,7 +6,7 @@ import BlogContextProvider from "./contexts/BlogContext";
 
 function App() {
   return (
-    <div>
+    <div className="font">
       <BlogContextProvider>
         <AuthContextProvider>
           <AppRouter />

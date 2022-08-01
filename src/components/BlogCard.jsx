@@ -15,7 +15,6 @@ export default function BlogCard() {
   const { cardInfo } = useContext(BlogContext);
   const navigate = useNavigate();
   cardInfo.sort((a, b) => a.time - b.time);
-  console.log(cardInfo);
   return cardInfo.map((card, index) => {
     const { id } = card;
     return (
@@ -30,7 +29,17 @@ export default function BlogCard() {
           }}
           onClick={() => navigate(`details/${id}`)}
         >
-          <CardMedia component="img" height="190" image={card.imgURL} alt="" />
+          <CardMedia
+            component="img"
+            height="190"
+            image={card.imgURL}
+            alt=""
+            sx={{
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              objectFit: "cover",
+            }}
+          />
           <CardContent sx={{ background: "#E7E6F5" }}>
             <Typography variant="h6" sx={{ color: "#1976d2" }}>
               {card.title}
