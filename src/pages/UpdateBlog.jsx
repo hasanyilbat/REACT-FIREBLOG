@@ -23,6 +23,7 @@ export default function BlogForm() {
 
     UpdateCardData(editTitle, editImageURL, editContent, currentUser.email, id);
     navigate("/");
+    console.log(id);
     toastSuccessNotify("Card was updated successfully");
   };
 

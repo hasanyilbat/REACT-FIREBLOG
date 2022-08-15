@@ -1,11 +1,11 @@
 <p>Clarusway<img align="right"
   src="https://secure.meetupstatic.com/photos/event/3/1/b/9/600_488352729.jpeg"  width="15px"></p>
 
-# Project-007 : FireBlog App (Milestone)
+# Project-006 : FireContact App (RC-06)
 
 ## Description
 
-Project aims to create a FireBlog App.
+Project aims to create a FireContact App.
 
 ## Problem Statement
 
@@ -14,53 +14,36 @@ Project aims to create a FireBlog App.
 ## Project Skeleton
 
 ```
-007 - FireBlog App (folder)
+006 - FireContact App (folder)
 |
 |----readme.md         # Given to the students (Definition of the project)
 SOLUTION
 ├── public
 │     └── index.html
 ├── src
-│    ├── app-router
-│    │       ├── AppRouter.js
-│    │       └── PrivateRouter.js
 │    ├── components
-│    │       ├── BlogCard.js
-│    │       ├── BlogForm.js
-│    │       └── Navbar.js
-│    ├── contexts
-│    │       ├── AuthContext.js
-│    │       └── BlogContext.js
-│    ├── helpers
-│    │       ├── firebase.js
-│    │       └── toastNotify.js
-│    ├── pages
-│    │       ├── About.js
-│    │       ├── Dashboard.js
-│    │       ├── Details.js
-│    │       ├── Login.js
-│    │       ├── NewBlog.js
-│    │       ├── Profile.js
-│    │       ├── Register.js
-│    │       └── UpdateBlog.js
-│    ├── assets.js
-│    │       └── [images]
+│    │       ├── form
+│    │       │     └── Form.js
+│    │       └── table
+│    │             └── Table.js
+│    ├── utils
+│    │       ├── customToastify.js
+│    │       └── firebase.js
 │    ├── App.js
 │    ├── App.css
 │    ├── index.js
 │    └── index.css
-├── .env
 ├── package.json
 └── yarn.lock
 ```
 
 ## Expected Outcome
 
-![Project 007 Snapshot](fireblog.gif)
+![Project 006 Snapshot](./firecontact.gif)
 
 ## Objective
 
-Build a Register FireBlog App using ReactJS.
+Build a FireContact App using ReactJS.
 
 ### At the end of the project, following topics are to be covered;
 
@@ -80,17 +63,20 @@ Build a Register FireBlog App using ReactJS.
 
 ## Steps to Solution
 
-- Step 1 : Create React App using `npx create-react-app fireblog-app`
+- Step 1 : Create React App using `npx create-react-app firecontact-app`
 
-- Step 2 : Use Firebase Auth for authentication and Firebase Realtime Database for CRUD operations.
+- Step 2 : Signup `https://firebase.google.com/` and create new app in firebase.
 
-- Step 3 : You can use css frameworks like Bootstrap, Semantic UI, Material UI.
+- Step 3 : Use `https://firebase.google.com/docs/database/web/start` and create `CRUD` operations.
 
-- Step 4 : You can view sample app on https://eds-fireblog.herokuapp.com/.
+- Step 4: You can use css frameworks like Bootstrap, Semantic UI.
 
-- Step 5 : Add project gif to your project and README.md file.
+- Step 5 : You can get random login background image from `https://picsum.photos/1600/900`
+
+- Step 6: Add project gif to your project and README.md file.
 
 ## Notes
 
 - You can add additional functionalities to your app.
+
 **<p align="center">&#9786; Happy Coding &#9997;</p>**
